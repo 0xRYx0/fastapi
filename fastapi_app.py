@@ -26,6 +26,9 @@ class Item(BaseModel):
             }
         }
         return schema
+    
+    class Config:
+        arbitrary_types_allowed = True
 
 
 @app.put("/items/{item_id}")
