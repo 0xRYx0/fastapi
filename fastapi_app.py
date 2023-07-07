@@ -12,6 +12,20 @@ class Item(BaseModel):
     description: Union[str, None] = None
     price: float
     tax: Union[float, None] = None
+    
+    @classmethod
+    def __get_pydantic_core_schema__(cls):
+        # Generate and return the Pydantic-core schema for the model
+        schema = {
+            'type': 'object',
+            'properties': {
+                'name': {'type': 'str'},
+                'description': {'type': 'str'},
+                'price': {'type': 'float'},
+                'tax': {'type': 'float'}
+            }
+        }
+        return schema
 
 
 @app.put("/items/{item_id}")
